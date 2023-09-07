@@ -9,6 +9,8 @@ DEF NUM_PAL_COLORS EQU const_value
 DEF PAL_COLOR_SIZE EQU 2
 DEF PALETTE_SIZE EQU NUM_PAL_COLORS * PAL_COLOR_SIZE
 
+DEF NUM_ACTIVE_PALS EQU 4
+
 ; pal/blk packets
 ; SetPalFunctions indexes (see engine/gfx/palettes.asm)
 	const_def
@@ -70,4 +72,7 @@ DEF SET_PAL_DEFAULT EQU $ff
 	const PAL_BADGE     ; $22
 	const PAL_CAVE      ; $23
 	const PAL_GAMEFREAK ; $24
+	const PAL_25        ; $25
+	const PAL_26        ; $26
+	const PAL_27        ; $27
 DEF NUM_SGB_PALS EQU const_value

@@ -3,6 +3,11 @@
 	const EXCLAMATION_BUBBLE ; 0
 	const QUESTION_BUBBLE    ; 1
 	const SMILE_BUBBLE       ; 2
+	const SKULL_BUBBLE       ; 3
+	const HEART_BUBBLE       ; 4
+	const BOLT_BUBBLE        ; 5
+	const ZZZ_BUBBLE         ; 6
+	const FISH_BUBBLE        ; 7
 
 ; slot symbols
 DEF SLOTS7      EQU $0200
@@ -20,16 +25,16 @@ DEF SLOTS_SOMEONESKEYS EQU $ff
 ; in game trades
 ; TradeMons indexes (see data/events/trades.asm)
 	const_def
-	const TRADE_FOR_TERRY
-	const TRADE_FOR_MARCEL
-	const TRADE_FOR_CHIKUCHIKU ; unused
-	const TRADE_FOR_SAILOR
-	const TRADE_FOR_DUX
-	const TRADE_FOR_MARC
-	const TRADE_FOR_LOLA
-	const TRADE_FOR_DORIS
-	const TRADE_FOR_CRINKLES
-	const TRADE_FOR_SPOT
+	const TRADE_FOR_GURIO
+	const TRADE_FOR_MILES
+	const TRADE_FOR_STINGER ; unused
+	const TRADE_FOR_STICKY
+	const TRADE_FOR_BART    ; unused
+	const TRADE_FOR_SPIKE
+	const TRADE_FOR_MARTY   ; unused
+	const TRADE_FOR_BUFFY
+	const TRADE_FOR_CEZANNE
+	const TRADE_FOR_RICKY
 DEF NUM_NPC_TRADES EQU const_value
 
 ; in game trade dialog sets

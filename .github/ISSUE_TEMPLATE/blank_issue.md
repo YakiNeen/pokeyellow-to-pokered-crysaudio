@@ -1,4 +1,4 @@
 ---
-name: Update to pokered
-about: Suggest a possible change to pokered itself.
+name: Update to pokeyellow
+about: Suggest a possible change to pokeyellow itself.
 ---

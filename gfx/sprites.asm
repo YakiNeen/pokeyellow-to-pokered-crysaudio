@@ -27,6 +27,7 @@ ClipboardSprite::        INCBIN "gfx/sprites/clipboard.2bpp"
 SnorlaxSprite::          INCBIN "gfx/sprites/snorlax.2bpp"
 OldAmberSprite::         INCBIN "gfx/sprites/old_amber.2bpp"
 GamblerAsleepSprite::    INCBIN "gfx/sprites/gambler_asleep.2bpp"
+QuestionMarkSprite::     INCBIN "gfx/sprites/question_mark.2bpp"
 
 
 SECTION "NPC Sprites 2", ROMX
@@ -71,3 +72,18 @@ AgathaSprite::           INCBIN "gfx/sprites/agatha.2bpp"
 BrunoSprite::            INCBIN "gfx/sprites/bruno.2bpp"
 LoreleiSprite::          INCBIN "gfx/sprites/lorelei.2bpp"
 SeelSprite::             INCBIN "gfx/sprites/seel.2bpp"
+
+
+SECTION "NPC Sprites 3", ROMX
+
+OfficerJennySprite::     INCBIN "gfx/sprites/officer_jenny.2bpp"
+PikachuSprite::          INCBIN "gfx/sprites/pikachu.2bpp"
+SandshrewSprite::        INCBIN "gfx/sprites/sandshrew.2bpp"
+OddishSprite::           INCBIN "gfx/sprites/oddish.2bpp"
+BulbasaurSprite::        INCBIN "gfx/sprites/bulbasaur.2bpp"
+JigglypuffSprite::       INCBIN "gfx/sprites/jigglypuff.2bpp"
+ClefairySprite::         INCBIN "gfx/sprites/clefairy.2bpp"
+ChanseySprite::          INCBIN "gfx/sprites/chansey.2bpp"
+SurfingPikachuSprite::   INCBIN "gfx/sprites/surfing_pikachu.2bpp"
+JessieSprite::           INCBIN "gfx/sprites/jessie.2bpp"
+JamesSprite::            INCBIN "gfx/sprites/james.2bpp"

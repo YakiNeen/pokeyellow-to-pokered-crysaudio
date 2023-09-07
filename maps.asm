@@ -93,7 +93,7 @@ Route2TradeHouse_Blocks:
 SaffronPidgeyHouse_Blocks:
 VermilionPidgeyHouse_Blocks:
 LavenderCuboneHouse_Blocks:
-CeruleanTradeHouse_Blocks:
+CeruleanMelaniesHouse_Blocks:
 PewterNidoranHouse_Blocks:
 PewterSpeechHouse_Blocks:
 ViridianNicknameHouse_Blocks: INCBIN "maps/ViridianNicknameHouse.blk"
@@ -143,9 +143,9 @@ INCLUDE "data/maps/headers/CeruleanTrashedHouse.asm"
 INCLUDE "scripts/CeruleanTrashedHouse.asm"
 INCLUDE "data/maps/objects/CeruleanTrashedHouse.asm"
 
-INCLUDE "data/maps/headers/CeruleanTradeHouse.asm"
-INCLUDE "scripts/CeruleanTradeHouse.asm"
-INCLUDE "data/maps/objects/CeruleanTradeHouse.asm"
+INCLUDE "data/maps/headers/CeruleanMelaniesHouse.asm"
+INCLUDE "scripts/CeruleanMelaniesHouse.asm"
+INCLUDE "data/maps/objects/CeruleanMelaniesHouse.asm"
 
 INCLUDE "data/maps/headers/BikeShop.asm"
 INCLUDE "scripts/BikeShop.asm"
@@ -267,6 +267,11 @@ SECTION "Maps 6", ROMX
 INCLUDE "data/maps/headers/ViridianPokecenter.asm"
 INCLUDE "scripts/ViridianPokecenter.asm"
 INCLUDE "data/maps/objects/ViridianPokecenter.asm"
+
+INCLUDE "data/maps/headers/CeladonMart1F.asm"
+INCLUDE "scripts/CeladonMart1F.asm"
+INCLUDE "data/maps/objects/CeladonMart1F.asm"
+CeladonMart1F_Blocks: INCBIN "maps/CeladonMart1F.blk"
 
 INCLUDE "data/maps/headers/PokemonMansion1F.asm"
 INCLUDE "scripts/PokemonMansion1F.asm"
@@ -558,6 +563,7 @@ INCLUDE "data/maps/headers/MtMoonB2F.asm"
 INCLUDE "scripts/MtMoonB2F.asm"
 INCLUDE "data/maps/objects/MtMoonB2F.asm"
 MtMoonB2F_Blocks: INCBIN "maps/MtMoonB2F.blk"
+INCLUDE "scripts/MtMoonB2F_2.asm"
 
 INCLUDE "data/maps/headers/SafariZoneWest.asm"
 INCLUDE "scripts/SafariZoneWest.asm"
@@ -1021,11 +1027,6 @@ INCLUDE "scripts/PokemonTower7F.asm"
 INCLUDE "data/maps/objects/PokemonTower7F.asm"
 PokemonTower7F_Blocks: INCBIN "maps/PokemonTower7F.blk"
 
-INCLUDE "data/maps/headers/CeladonMart1F.asm"
-INCLUDE "scripts/CeladonMart1F.asm"
-INCLUDE "data/maps/objects/CeladonMart1F.asm"
-CeladonMart1F_Blocks: INCBIN "maps/CeladonMart1F.blk"
-
 
 SECTION "Maps 18", ROMX
 
@@ -1149,9 +1150,9 @@ INCLUDE "data/maps/objects/WardensHouse.asm"
 WardensHouse_Blocks: INCBIN "maps/WardensHouse.blk"
 
 INCLUDE "data/maps/headers/SafariZoneGate.asm"
-INCLUDE "scripts/SafariZoneGate.asm"
 INCLUDE "data/maps/objects/SafariZoneGate.asm"
 SafariZoneGate_Blocks: INCBIN "maps/SafariZoneGate.blk"
+INCLUDE "scripts/SafariZoneGate.asm"
 
 INCLUDE "data/maps/headers/FuchsiaGym.asm"
 INCLUDE "scripts/FuchsiaGym.asm"
@@ -1167,6 +1168,7 @@ INCLUDE "data/maps/headers/CinnabarGym.asm"
 INCLUDE "scripts/CinnabarGym.asm"
 INCLUDE "data/maps/objects/CinnabarGym.asm"
 CinnabarGym_Blocks: INCBIN "maps/CinnabarGym.blk"
+INCLUDE "scripts/CinnabarGym_2.asm"
 
 INCLUDE "data/maps/headers/CinnabarLab.asm"
 INCLUDE "scripts/CinnabarLab.asm"
@@ -1219,3 +1221,37 @@ INCLUDE "data/maps/headers/AgathasRoom.asm"
 INCLUDE "scripts/AgathasRoom.asm"
 INCLUDE "data/maps/objects/AgathasRoom.asm"
 AgathasRoom_Blocks: INCBIN "maps/AgathasRoom.blk"
+
+
+SECTION "Maps 22", ROMX
+
+INCLUDE "scripts/ViridianCity2.asm"
+INCLUDE "scripts/VermilionCity2.asm"
+INCLUDE "scripts/CeladonCity2.asm"
+INCLUDE "scripts/Route1_2.asm"
+INCLUDE "scripts/Route22_2.asm"
+INCLUDE "scripts/RedsHouse1F2.asm"
+INCLUDE "scripts/OaksLab2.asm"
+INCLUDE "scripts/ViridianSchoolHouse2.asm"
+INCLUDE "scripts/Museum1F2.asm"
+INCLUDE "scripts/PewterPokecenter2.asm"
+INCLUDE "scripts/PokemonTower2F_2.asm"
+INCLUDE "scripts/CeladonMart3F_2.asm"
+INCLUDE "scripts/CeladonMansion1F_2.asm"
+INCLUDE "scripts/CeladonMansion3F_2.asm"
+INCLUDE "scripts/GameCorner2.asm"
+INCLUDE "scripts/CeladonDiner2.asm"
+INCLUDE "scripts/SafariZoneGate2.asm"
+INCLUDE "scripts/CinnabarGym3.asm"
+INCLUDE "scripts/MtMoonPokecenter2.asm"
+
+INCLUDE "data/maps/headers/SummerBeachHouse.asm"
+INCLUDE "scripts/SummerBeachHouse.asm"
+SummerBeachHouse_Blocks: INCBIN "maps/SummerBeachHouse.blk"
+INCLUDE "data/maps/objects/SummerBeachHouse.asm"
+INCLUDE "scripts/SummerBeachHouse2.asm"
+
+INCLUDE "scripts/BillsHouse2.asm"
+INCLUDE "scripts/ViridianForest2.asm"
+INCLUDE "scripts/SSAnne2FRooms_2.asm"
+INCLUDE "scripts/SilphCo11F_2.asm"

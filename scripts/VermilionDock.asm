@@ -38,10 +38,9 @@ VermilionDock_Script:
 
 VermilionDock_1db9b:
 	SetEventForceReuseHL EVENT_SS_ANNE_LEFT
-	ld a, SFX_STOP_ALL_MUSIC
+	ld a, $ff
 	ld [wJoyIgnore], a
-;	ld [wNewSoundID], a
-	call PlaySound
+	call StopAllMusic
 	ld c, 0 ; BANK(Music_Surfing)
 	ld a, MUSIC_SURFING
 	call PlayMusic
@@ -63,6 +62,7 @@ VermilionDock_1db9b:
 	ldh [hAutoBGTransferEnabled], a
 	ld [wSSAnneSmokeDriftAmount], a
 	ldh [rOBP1], a
+	call UpdateGBCPal_OBP1
 	ld a, 88
 	ld [wSSAnneSmokeX], a
 	ld hl, wMapViewVRAMPointer

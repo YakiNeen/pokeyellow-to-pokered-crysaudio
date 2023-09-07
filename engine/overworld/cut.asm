@@ -76,6 +76,7 @@ InitCutAnimOAM:
 	ld [wWhichAnimationOffsets], a
 	ld a, %11100100
 	ldh [rOBP1], a
+	call UpdateGBCPal_OBP1
 	ld a, [wCutTile]
 	cp $52
 	jr z, .grass
@@ -123,8 +124,8 @@ WriteCutOrBoulderDustAnimationOAMBlock:
 	jp WriteOAMBlock
 
 CutOrBoulderDustAnimationTilesAndAttributes:
-	dbsprite  2, -1,  0,  4, $fd, OAM_OBP1
-	dbsprite  2, -1,  0,  6, $ff, OAM_OBP1
+	dbsprite  2, -1,  4,  4, $fd, OAM_OBP1 | OAM_HIGH_PALS
+	dbsprite  2, -1,  4,  6, $ff, OAM_OBP1 | OAM_HIGH_PALS
 
 GetCutOrBoulderDustAnimationOffsets:
 	ld hl, wSpritePlayerStateData1YPixels

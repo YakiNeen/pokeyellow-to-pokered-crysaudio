@@ -5,6 +5,8 @@ SetDefaultNames:
 	push af
 	ld a, [wd732]
 	push af
+	ld a, [wPrinterSettings]
+	push af
 	ld hl, wPlayerName
 	ld bc, wBoxDataEnd - wPlayerName
 	xor a
@@ -13,6 +15,12 @@ SetDefaultNames:
 	ld bc, wSpriteDataEnd - wSpriteDataStart
 	xor a
 	call FillMemory
+	xor a
+	ld [wSurfingMinigameHiScore], a
+	ld [wSurfingMinigameHiScore + 1], a
+	ld [wSurfingMinigameHiScore + 2], a
+	pop af
+	ld [wPrinterSettings], a
 	pop af
 	ld [wd732], a
 	pop af
@@ -29,11 +37,11 @@ SetDefaultNames:
 	ld hl, SonyText
 	ld de, wRivalName
 	ld bc, NAME_LENGTH
-	jp CopyData
+	call CopyData ; rip optimizations
+	ret
 
 OakSpeech:
-	ld a, SFX_STOP_ALL_MUSIC
-	call PlaySound
+	call StopAllMusic ; stop music
 	ld a, 0 ; BANK(Music_Routes2)
 	ld c, a
 	ld a, MUSIC_ROUTES2
@@ -64,7 +72,7 @@ OakSpeech:
 	call PrintText
 	call GBFadeOutToWhite
 	call ClearScreen
-	ld a, NIDORINO
+	ld a, STARTER_PIKACHU
 	ld [wd0b5], a
 	ld [wcf91], a
 	call GetMonHeader
@@ -109,13 +117,13 @@ OakSpeech:
 	ld a, SFX_SHRINK
 	call PlaySound
 	pop af
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ld c, 4
 	call DelayFrames
-	ld de, RedSprite
 	ld hl, vSprites
-	lb bc, BANK(RedSprite), $0C
+	ld de, RedSprite
+	ld b, BANK(RedSprite)
+	ld c, $0C
 	call CopyVideoData
 	ld de, ShrinkPic1
 	lb bc, BANK(ShrinkPic1), $00
@@ -138,13 +146,11 @@ OakSpeech:
 	ld [wMusicFadeID], a
 
 	pop af
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ld c, 20
 	call DelayFrames
 	hlcoord 6, 5
-	ld b, 7
-	ld c, 7
+	lb bc, 7, 7
 	call ClearScreenArea
 	call LoadTextBoxTilePatterns
 	ld a, 1
@@ -152,13 +158,15 @@ OakSpeech:
 	ld c, 50
 	call DelayFrames
 	call GBFadeOutToWhite
-	jp ClearScreen
+	call ClearScreen ; rip more tail-end optimizations
+	ret
+
 OakSpeechText1:
 	text_far _OakSpeechText1
 	text_end
 OakSpeechText2:
 	text_far _OakSpeechText2A
-	sound_cry_nidorina
+	sound_cry_pikachu
 	text_far _OakSpeechText2B
 	text_end
 IntroducePlayerText:
@@ -177,6 +185,7 @@ FadeInIntroPic:
 .next
 	ld a, [hli]
 	ldh [rBGP], a
+	call UpdateGBCPal_BGP
 	ld c, 10
 	call DelayFrames
 	dec b
@@ -198,6 +207,7 @@ MovePicLeft:
 
 	ld a, %11100100
 	ldh [rBGP], a
+	call UpdateGBCPal_BGP
 .next
 	call DelayFrame
 	ldh a, [rWX]
@@ -216,10 +226,13 @@ IntroDisplayPicCenteredOrUpperRight:
 	push bc
 	ld a, b
 	call UncompressSpriteFromDE
+	ld a, $0
+	call SwitchSRAMBankAndLatchClockData
 	ld hl, sSpriteBuffer1
 	ld de, sSpriteBuffer0
 	ld bc, $310
 	call CopyData
+	call PrepareRTCDataAndDisableSRAM
 	ld de, vFrontPic
 	call InterlaceMergeSpriteBuffers
 	pop bc

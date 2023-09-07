@@ -20,12 +20,13 @@ ExternalClockTradeAnim:
 TradeAnimCommon:
 	ld a, [wOptions]
 	push af
+	and %110000 ; preserve speaker options
+	ld [wOptions], a
 	ldh a, [hSCY]
 	push af
 	ldh a, [hSCX]
 	push af
 	xor a
-	ld [wOptions], a
 	ldh [hSCY], a
 	ldh [hSCX], a
 	push de
@@ -160,12 +161,12 @@ LoadTradingGFXAndMonNames:
 	ld de, vChars2 tile $31
 	ld bc, TradingAnimationGraphicsEnd - TradingAnimationGraphics
 	ld a, BANK(TradingAnimationGraphics)
-	call FarCopyData2
+	call FarCopyData
 	ld hl, TradingAnimationGraphics2
 	ld de, vSprites tile $7c
 	ld bc, TradingAnimationGraphics2End - TradingAnimationGraphics2
 	ld a, BANK(TradingAnimationGraphics2)
-	call FarCopyData2
+	call FarCopyData
 	ld hl, vBGMap0
 	ld bc, $800
 	ld a, " "
@@ -182,6 +183,7 @@ LoadTradingGFXAndMonNames:
 	ld a, $f0 ; SGB OBP0
 .next
 	ldh [rOBP0], a
+	call UpdateGBCPal_OBP0
 	call EnableLCD
 	xor a
 	ldh [hAutoBGTransferEnabled], a
@@ -199,6 +201,7 @@ LoadTradingGFXAndMonNames:
 Trade_LoadMonPartySpriteGfx:
 	ld a, %11010000
 	ldh [rOBP1], a
+	call UpdateGBCPal_OBP1
 	farjp LoadMonPartySpriteGfx
 
 Trade_SwapNames:
@@ -233,8 +236,7 @@ Trade_ShowPlayerMon:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
 	hlcoord 4, 0
-	ld b, 6
-	ld c, 10
+	lb bc, 6, 10
 	call TextBoxBorder
 	call Trade_PrintPlayerMonInfoText
 	ld b, HIGH(vBGMap0)
@@ -303,6 +305,7 @@ Trade_AnimateBallEnteringLinkCable:
 	call DelayFrames
 	ld a, %11100100
 	ldh [rOBP0], a
+	call UpdateGBCPal_OBP0
 	xor a
 	ld [wLinkCableAnimBulgeToggle], a
 	lb bc, $20, $60
@@ -354,8 +357,7 @@ Trade_ShowEnemyMon:
 	call Trade_ShowAnimation
 	call Trade_ShowClearedWindow
 	hlcoord 4, 10
-	ld b, 6
-	ld c, 10
+	lb bc, 6, 10
 	call TextBoxBorder
 	call Trade_PrintEnemyMonInfoText
 	call Trade_CopyTileMapToVRAM
@@ -382,6 +384,7 @@ Trade_AnimLeftToRight:
 	ld [wTradedMonMovingRight], a
 	ld a, %11100100
 	ldh [rOBP0], a
+	call UpdateGBCPal_OBP0
 	ld a, $54
 	ld [wBaseCoordX], a
 	ld a, $1c
@@ -446,6 +449,8 @@ Trade_InitGameboyTransferGfx:
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	call ClearScreen
+	ld b, SET_PAL_GENERIC
+	call RunPaletteCommand
 	xor a
 	ldh [hAutoBGTransferEnabled], a
 	call Trade_LoadMonPartySpriteGfx
@@ -479,8 +484,7 @@ Trade_DrawLeftGameboy:
 
 ; draw text box with player name below gameboy pic
 	hlcoord 4, 12
-	ld b, 2
-	ld c, 7
+	lb bc, 2, 7
 	call TextBoxBorder
 	hlcoord 5, 14
 	ld de, wPlayerName
@@ -526,8 +530,7 @@ Trade_DrawRightGameboy:
 
 ; draw text box with enemy name above link cable
 	hlcoord 6, 0
-	ld b, 2
-	ld c, 7
+	lb bc, 2, 7
 	call TextBoxBorder
 	hlcoord 7, 2
 	ld de, wLinkEnemyTrainerName
@@ -599,6 +602,7 @@ Trade_AnimCircledMon:
 	ldh a, [rBGP]
 	xor $3c ; make link cable flash
 	ldh [rBGP], a
+	call UpdateGBCPal_BGP
 	ld hl, wShadowOAMSprite00TileID
 	ld de, $4
 	ld c, $14

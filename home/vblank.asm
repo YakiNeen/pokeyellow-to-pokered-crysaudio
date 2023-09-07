@@ -5,6 +5,11 @@ VBlank::
 	push de
 	push hl
 
+	ldh a, [rVBK] ; vram bank
+	push af
+	xor a
+	ldh [rVBK], a ; reset vram bank to 0
+
 	ldh a, [hLoadedROMBank]
 	ld [wVBlankSavedROMBank], a
 
@@ -33,8 +38,10 @@ VBlank::
 	call PrepareOAMData
 
 	; VBlank-sensitive operations end.
+	call TrackPlayTime ; keep track of time played
 
 	call Random
+	call ReadJoypad
 
 	ldh a, [hVBlankOccurred]
 	and a
@@ -53,35 +60,21 @@ VBlank::
 	call UpdateSound
 ;	call FadeOutAudio
 
-;	ld a, [wAudioROMBank] ; music ROM bank
-;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
-
-;	cp BANK(Audio1_UpdateMusic)
-;	jr nz, .checkForAudio2
-;.audio1
-;	call Audio1_UpdateMusic
-;	jr .afterMusic
-;.checkForAudio2
-;	cp BANK(Audio2_UpdateMusic)
-;	jr nz, .audio3
-;.audio2
+;	ld a, BANK(Music_DoLowHealthAlarm)
+;	call BankswitchCommon
 ;	call Music_DoLowHealthAlarm
-;	call Audio2_UpdateMusic
-;	jr .afterMusic
-;.audio3
-;	call Audio3_UpdateMusic
-;.afterMusic
+;	ld a, BANK(Audio1_UpdateMusic)
+;	call BankswitchCommon
+;	call Audio1_UpdateMusic
 
-	farcall TrackPlayTime ; keep track of time played
-
-	ldh a, [hDisableJoypadPolling]
-	and a
-	call z, ReadJoypad
+	call SerialFunction
 
 	ld a, [wVBlankSavedROMBank]
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
+
+	pop af
+	ldh [rVBK], a
 
 	pop hl
 	pop de

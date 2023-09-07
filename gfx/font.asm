@@ -1,4 +1,4 @@
-PokemonLogoGraphics: INCBIN "gfx/title/pokemon_logo.2bpp"
+PokemonLogoJapanGraphics: INCBIN "gfx/title/pokemon_logo_japan.2bpp"
 FontGraphics:: INCBIN "gfx/font/font.1bpp"
 FontGraphicsEnd::
 
@@ -17,6 +17,8 @@ NintendoCopyrightLogoGraphics: INCBIN "gfx/splash/copyright.2bpp"
 
 GamefreakLogoGraphics: INCBIN "gfx/title/gamefreak_inc.2bpp"
 GamefreakLogoGraphicsEnd:
+
+NineTile: INCBIN "gfx/title/nine.2bpp"
 
 TextBoxGraphics:: INCBIN "gfx/font/font_extra.2bpp"
 TextBoxGraphicsEnd::

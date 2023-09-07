@@ -38,7 +38,7 @@ Music:
 	dba Music_BikeRiding
 	dba Music_Surfing
 	dba Music_RBYGameCorner
-	dba Music_IntroBattle
+	dba Music_YellowIntro
 	dba Music_Dungeon1
 	dba Music_Dungeon2
 	dba Music_Dungeon3
@@ -48,3 +48,8 @@ Music:
 	dba Music_MeetEvilTrainer
 	dba Music_MeetFemaleTrainer
 	dba Music_MeetMaleTrainer
+
+	dba Music_SurfingPikachu
+	dba Music_MeetJessieJames
+	dba Music_YellowUnusedSong
+	dba Music_Printer
